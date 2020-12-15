@@ -1,0 +1,29 @@
+/*
+  Localizable.strings
+  FoodCompass
+
+  Created by Nicholas Pascucci on 12/7/20.
+  Copyright © 2020 Nicholas Pascucci. All rights reserved.
+*/
+"Food_Compass" = "Food Compass";
+"Hungry_Key" = "What are you hungry for?";
+"Powered" = "Powered by Yelp";
+"Restaurant" = "Restaurant Name";
+"Distance" = "Distance";
+"Rating" = "Rating";
+"Info" = "Info";
+"Skip" = "Skip";
+"Results" = "Show All Results";
+"Map" = "Map";
+"List" = "List";
+"Units" = "Units";
+"Imperial" = "Imperial - Miles";
+"Metric" = "Metric - Kilometers";
+"Radius" = "Radius";
+"Mile" = "Mile";
+"Kilometer" = "Kilometer";
+"Miles" = "Miles";
+"Kilometers" = "Kilometers";
+"Information" = "Information";
+"Info_Paragraph_Key" = "Food Compass is an app for those who ask how we're getting food rather than where.  Use it by choosing a type of food and following the compass to your destination or by using the built in Map function.";
+"Copyright_key" = "Food Compass, Version 1.0. Copyright 2020";
