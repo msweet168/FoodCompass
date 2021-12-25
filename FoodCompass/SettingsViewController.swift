@@ -2,13 +2,13 @@
 //  SettingsViewController.swift
 //  FoodCompass
 //
-//  Created by Nicholas Pascucci on 12/3/20.
-//  Copyright © 2020 Nicholas Pascucci. All rights reserved.
+//  Created by Mitchell Sweet on 12/3/20.
+//  Copyright © 2020 Mitchell Sweet. All rights reserved.
 //
 
 import UIKit
 
-class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class SettingsViewController: UIViewController {
     
     // MARK: IBOutlets
     @IBOutlet weak var unitsPickerView: UIPickerView!
@@ -16,6 +16,7 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var unitsLabel: UILabel!
     @IBOutlet weak var radiusLabel: UILabel!
+    @IBOutlet weak var infoLabel: UILabel!
     
     // MARK: Constants
     public static let storyboardID = "settingVC"
@@ -24,7 +25,6 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        localization()
         viewSetup()
         pickerViewSetup()
         updateSettingsPage()
@@ -37,13 +37,27 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     func viewSetup() {
         self.navigationController?.navigationBar.tintColor = .themeRed
-        self.title = "Settings"
+        self.title = StringManager.Settings.settings
+        
+        unitsLabel.text = StringManager.Settings.units
+        radiusLabel.text = StringManager.Settings.radius
+        infoLabel.text = StringManager.Settings.copyright
     }
     
-    func localization() {
-        unitsLabel.text = localize(str: "Units")
-        radiusLabel.text = localize(str: "Radius")
+    func updateSettingsPage() {
+        let radius = SettingsManager.convertedRadius
+        rangeStepper.value = Double(SettingsManager.radius)
+        unitsPickerView.selectRow(SettingsManager.units == .imperial ? 0 : 1, inComponent: 0, animated: false)
+        distanceLabel.text = "\(radius) \(SettingsManager.units == .imperial ? StringManager.Settings.miles : StringManager.Settings.kilometers)"
     }
+
+    @IBAction func stepperChangedValue(sender: UIStepper) {
+        SettingsManager.radius = Int(sender.value)
+        updateSettingsPage()
+    }
+}
+
+extension SettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerViewSetup() {
         unitsPickerView.delegate = self
@@ -52,47 +66,24 @@ class SettingsViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int { return 1 }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 2
-    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int { return UnitType.allCases.count }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if component == 0 {
-            if row == 0 {
-                return localize(str: "Imperial")
-            } else if row == 1 {
-                return localize(str: "Metric")
-            } else {
-                fatalError("ERROR: Too many rows in picker view.")
-            }
-        } else {
-            fatalError("ERROR: Too many components in picker view.")
+        guard component == 0 else { fatalError("ERROR: Too many components in picker view.") }
+        
+        switch row {
+        case 0: return StringManager.Settings.imperial
+        case 1: return StringManager.Settings.metric
+        default: return nil
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if row == 0 {
-            SettingsManager.uints = .imperial
-        } else if row == 1 {
-            SettingsManager.uints = .metric
+        switch row {
+        case 0: SettingsManager.units = .imperial
+        case 1: SettingsManager.units = .metric
+        default: SettingsManager.units = .imperial
         }
-        updateSettingsPage()
-    }
-    
-    func updateSettingsPage() {
-        let radius = SettingsManager.convertedRadius
-        if SettingsManager.uints == .imperial {
-            unitsPickerView.selectRow(0, inComponent: 0, animated: false)
-            distanceLabel.text = "\(radius) \(localize(str: "Miles"))"
-        } else {
-            unitsPickerView.selectRow(1, inComponent: 0, animated: false)
-            distanceLabel.text = "\(radius) \(localize(str: "Kilometers"))"
-        }
-        rangeStepper.value = Double(SettingsManager.radius)
-    }
-
-    @IBAction func stepperChangedValue(sender: UIStepper) {
-        SettingsManager.radius = Int(sender.value)
         updateSettingsPage()
     }
 }

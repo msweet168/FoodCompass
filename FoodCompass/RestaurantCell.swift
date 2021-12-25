@@ -2,8 +2,8 @@
 //  RestaurantCell.swift
 //  FoodCompass
 //
-//  Created by Nicholas Pascucci on 12/7/20.
-//  Copyright © 2020 Nicholas Pascucci. All rights reserved.
+//  Created by Mitchell Sweet on 12/7/20.
+//  Copyright © 2020 Mitchell Sweet. All rights reserved.
 //
 
 import UIKit
@@ -29,5 +29,15 @@ class RestaurantCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         FoodCompassStyler.styleRestaurantCell(cell: self)
+    }
+    
+    /// Sets cell data to past in business data
+    public func assign(restaurant: Business) {
+        nameLabel.text = restaurant.name
+        ratingLabel.text = StringManager.List.ratingReviews(rating: restaurant.rating, reviewCount: restaurant.review_count)
+        distanceLabel.text = getReadableDistance(meters: restaurant.distance)
+        if let price = restaurant.price {
+            ratingLabel.text = "\(ratingLabel.text!), \(price)"
+        }
     }
 }

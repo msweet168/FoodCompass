@@ -2,41 +2,45 @@
 //  Declarations.swift
 //  FoodCompass
 //
-//  Created by Nicholas Pascucci on 12/6/20.
-//  Copyright © 2020 Nicholas Pascucci. All rights reserved.
+//  Created by Mitchell Sweet on 12/6/20.
+//  Copyright © 2020 Mitchell Sweet. All rights reserved.
 //
 
 import Foundation
 import UIKit
 import CoreLocation
 
+struct Globals {
+    static let StoryboardName = "Main"
+}
+
 // MARK: Food Items
 let foodItems: [FoodItem] = [
-    FoodItem(category: .coffee,     image: UIImage(named: "Coffee")!,    displayName: "Coffee Shops"),
-    FoodItem(category: .fastFood,   image: UIImage(named: "Fries")!,     displayName: "Fast Food"),
-    FoodItem(category: .icecream,   image: UIImage(named: "Ice Cream")!, displayName: "Ice Cream"),
-    FoodItem(category: .chinese,    image: UIImage(named: "Chinese")!,   displayName: "Chinese Food"),
-    FoodItem(category: .pancakes,   image: UIImage(named: "Pancakes")!,  displayName: "Pancake Houses"),
-    FoodItem(category: .italian,    image: UIImage(named: "Pasta")!,     displayName: "Italian Food"),
-    FoodItem(category: .pizza,      image: UIImage(named: "Pizza")!,     displayName: "Pizza"),
-    FoodItem(category: .salad,      image: UIImage(named: "Salad")!,     displayName: "Salad"),
-    FoodItem(category: .sushi,      image: UIImage(named: "Sushi")!,     displayName: "Sushi"),
-    FoodItem(category: .tacos,      image: UIImage(named: "Taco")!,      displayName: "Tacos"),
-    FoodItem(category: .tea,        image: UIImage(named: "Tea")!,       displayName: "Tea Shops"),
-    FoodItem(category: .sandwiches, image: UIImage(named: "Sandwich")!,  displayName: "Sandwich Shops"),
-    FoodItem(category: .bars,       image: UIImage(named: "Beer")!,      displayName: "Bars"),
-    FoodItem(category: .hotdog,     image: UIImage(named: "Hot Dog")!,   displayName: "Hot Dogs"),
-    FoodItem(category: .grocery,    image: UIImage(named: "Groceries")!, displayName: "Grocery Stores"),
-    FoodItem(category: .seafood,    image: UIImage(named: "Fish")!,      displayName: "Seafood"),
-    FoodItem(category: .donuts,     image: UIImage(named: "Donut")!,     displayName: "Donut Shops"),
-    FoodItem(category: .candy,      image: UIImage(named:  "Candy")!,    displayName: "Candy Stores"),
-    FoodItem(category: .chicken,    image: UIImage(named: "Chicken")!,   displayName: "Chicken Wings"),
-    FoodItem(category: .mexican,    image: UIImage(named: "Burrito")!,   displayName: "Mexican Food")
+    FoodItem(category: .coffee,     image: ImageManager.coffee,    displayName: "Coffee Shops"),
+    FoodItem(category: .fastFood,   image: ImageManager.fries,     displayName: "Fast Food"),
+    FoodItem(category: .icecream,   image: ImageManager.iceCream,  displayName: "Ice Cream"),
+    FoodItem(category: .chinese,    image: ImageManager.chinese,   displayName: "Chinese Food"),
+    FoodItem(category: .pancakes,   image: ImageManager.pancakes,  displayName: "Pancake Houses"),
+    FoodItem(category: .italian,    image: ImageManager.pasta,     displayName: "Italian Food"),
+    FoodItem(category: .pizza,      image: ImageManager.pizza,     displayName: "Pizza"),
+    FoodItem(category: .salad,      image: ImageManager.salad,     displayName: "Salad"),
+    FoodItem(category: .sushi,      image: ImageManager.sushi,     displayName: "Sushi"),
+    FoodItem(category: .tacos,      image: ImageManager.taco,      displayName: "Tacos"),
+    FoodItem(category: .tea,        image: ImageManager.tea,       displayName: "Tea Shops"),
+    FoodItem(category: .sandwiches, image: ImageManager.sandwich,  displayName: "Sandwich Shops"),
+    FoodItem(category: .bars,       image: ImageManager.beer,      displayName: "Bars"),
+    FoodItem(category: .hotdog,     image: ImageManager.hotDog,    displayName: "Hot Dogs"),
+    FoodItem(category: .grocery,    image: ImageManager.groceries, displayName: "Grocery Stores"),
+    FoodItem(category: .seafood,    image: ImageManager.fish,      displayName: "Seafood"),
+    FoodItem(category: .donuts,     image: ImageManager.donut,     displayName: "Donut Shops"),
+    FoodItem(category: .candy,      image: ImageManager.candy,     displayName: "Candy Stores"),
+    FoodItem(category: .chicken,    image: ImageManager.chicken,   displayName: "Chicken Wings"),
+    FoodItem(category: .mexican,    image: ImageManager.burrito,   displayName: "Mexican Food")
 ]
 
 func getReadableDistance(meters: Double) -> String {
-    // If less than 1/5 mile, return feet
-    let units = SettingsManager.uints
+    // If less than 1/2 mile, return feet
+    let units = SettingsManager.units
     if meters < 804 {
         let feet = units == .imperial ? meters * 3.2808 : meters
         return "\(Int(round(feet))) \(units == .imperial ? "Feet" : "Meters")"
@@ -51,59 +55,14 @@ func getReadableDistance(meters: Double) -> String {
     }
 }
 
-func localize(str: String) -> String {
-    return NSLocalizedString(str, comment: "")
-}
-
-// MARK: Settings Manager
-class SettingsManager {
-    private struct UserDefaultsKeys {
-        static let UNITS = "units"
-        static let RADIUS = "radius"
-    }
-    
-    public static var uints: UnitType {
-        get { return UnitType(rawValue: UserDefaults.standard.string(forKey: UserDefaultsKeys.UNITS) ?? UnitType.imperial.rawValue) ?? .imperial }
-        set { UserDefaults.standard.setValue(newValue.rawValue, forKey: UserDefaultsKeys.UNITS) }
-    }
-    
-    /// Returns saved radius in miles
-    public static var radius: Int {
-        get { return UserDefaults.standard.integer(forKey: UserDefaultsKeys.RADIUS) }
-        set { UserDefaults.standard.setValue(newValue, forKey: UserDefaultsKeys.RADIUS) }
-    }
-    
-    /// Returns saved radius in current units that are set in defaults.
-    public static var convertedRadius: Int {
-        if self.uints == .imperial {
-            return radius
-        } else {
-            return Int(round(Double(radius)*1.609344))
-        }
-    }
-    
-    public static var radiusInMeters: Double {
-        return Double(self.radius)/0.00062137
-    }
-    
-    public static func metersToUnits(meters: Double) -> Double {
-        if self.uints == .imperial {
-            return meters *  0.00062137
-        } else {
-            return meters/1000
-        }
-    }
-    
-    init() {
-        // Register User Defaults on first launch
-        UserDefaults.standard.register(defaults: [
-            UserDefaultsKeys.UNITS: UnitType.imperial.rawValue,
-            UserDefaultsKeys.RADIUS: 2,
-        ])
+var statusBarOrientation: UIInterfaceOrientation? {
+    get {
+        guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else { return nil }
+        return orientation
     }
 }
 
-enum UnitType: String {
+enum UnitType: String, CaseIterable {
     case imperial = "imperial"
     case metric = "metric"
 }
@@ -148,4 +107,9 @@ extension CGFloat {
 private extension Double {
   var degreesToRadians: Double { return Double(CGFloat(self).degreesToRadians) }
   var radiansToDegrees: Double { return Double(CGFloat(self).radiansToDegrees) }
+}
+
+// MARK: String
+extension String {
+    var localizedString: String { return NSLocalizedString(self, comment: "") }
 }

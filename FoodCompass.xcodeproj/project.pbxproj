@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		226808022579D39E0088768E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226808012579D39E0088768E /* AppDelegate.swift */; };
 		226808042579D39E0088768E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226808032579D39E0088768E /* SceneDelegate.swift */; };
-		226808062579D39E0088768E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226808052579D39E0088768E /* ViewController.swift */; };
+		226808062579D39E0088768E /* FoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226808052579D39E0088768E /* FoodViewController.swift */; };
 		226808092579D39E0088768E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 226808072579D39E0088768E /* Main.storyboard */; };
 		2268080C2579D39E0088768E /* FoodCompass.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2268080A2579D39E0088768E /* FoodCompass.xcdatamodeld */; };
 		2268080E2579D3A30088768E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2268080D2579D3A30088768E /* Assets.xcassets */; };
@@ -17,7 +17,6 @@
 		226808192579F3A30088768E /* CompassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226808182579F3A30088768E /* CompassViewController.swift */; };
 		2268081B2579F4000088768E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2268081A2579F4000088768E /* SettingsViewController.swift */; };
 		2268081D2579F4160088768E /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2268081C2579F4160088768E /* ListViewController.swift */; };
-		2268081F2579F4270088768E /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2268081E2579F4270088768E /* InfoViewController.swift */; };
 		722BCCAC257CB11E00DC479C /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722BCCAB257CB11E00DC479C /* Models.swift */; };
 		722BCCAF257CB12500DC479C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722BCCAE257CB12500DC479C /* LocationManager.swift */; };
 		722BCCB2257CB12C00DC479C /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722BCCB1257CB12C00DC479C /* API.swift */; };
@@ -27,13 +26,16 @@
 		722BCCC3257DF2E900DC479C /* RestaurantCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 722BCCC1257DF2E900DC479C /* RestaurantCell.xib */; };
 		722BCCC6257DF8EE00DC479C /* FoodCompassStyler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722BCCC5257DF8EE00DC479C /* FoodCompassStyler.swift */; };
 		724A4A3A257F2278002BB992 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 724A4A3C257F2278002BB992 /* Localizable.strings */; };
+		726BF5D5276867FA00F0880A /* StringManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726BF5D4276867FA00F0880A /* StringManager.swift */; };
+		726BF5D727686AF200F0880A /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726BF5D627686AF200F0880A /* ImageManager.swift */; };
+		726BF5DB27686E7B00F0880A /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726BF5DA27686E7B00F0880A /* SettingsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		226807FE2579D39E0088768E /* FoodCompass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodCompass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		226808012579D39E0088768E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		226808032579D39E0088768E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		226808052579D39E0088768E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		226808052579D39E0088768E /* FoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewController.swift; sourceTree = "<group>"; };
 		226808082579D39E0088768E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2268080B2579D39E0088768E /* FoodCompass.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FoodCompass.xcdatamodel; sourceTree = "<group>"; };
 		2268080D2579D3A30088768E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -42,7 +44,6 @@
 		226808182579F3A30088768E /* CompassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassViewController.swift; sourceTree = "<group>"; };
 		2268081A2579F4000088768E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2268081C2579F4160088768E /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
-		2268081E2579F4270088768E /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		722BCCAB257CB11E00DC479C /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		722BCCAE257CB12500DC479C /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		722BCCB1257CB12C00DC479C /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -54,6 +55,9 @@
 		724A4A3B257F2278002BB992 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		724A4A3E257F227B002BB992 /* pl-PL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pl-PL"; path = "pl-PL.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		724A4A3F257F2288002BB992 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		726BF5D4276867FA00F0880A /* StringManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringManager.swift; sourceTree = "<group>"; };
+		726BF5D627686AF200F0880A /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		726BF5DA27686E7B00F0880A /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,10 +93,10 @@
 				226808012579D39E0088768E /* AppDelegate.swift */,
 				226808032579D39E0088768E /* SceneDelegate.swift */,
 				722BCCB1257CB12C00DC479C /* API.swift */,
-				722BCCAE257CB12500DC479C /* LocationManager.swift */,
 				722BCCAB257CB11E00DC479C /* Models.swift */,
 				722BCCB7257CB43300DC479C /* Declarations.swift */,
 				722BCCC5257DF8EE00DC479C /* FoodCompassStyler.swift */,
+				726BF5D3276867E900F0880A /* Managers */,
 				722BCCB4257CB13700DC479C /* Views */,
 				226808072579D39E0088768E /* Main.storyboard */,
 				2268080D2579D3A30088768E /* Assets.xcassets */,
@@ -107,11 +111,10 @@
 		722BCCB4257CB13700DC479C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				226808052579D39E0088768E /* ViewController.swift */,
+				226808052579D39E0088768E /* FoodViewController.swift */,
 				226808182579F3A30088768E /* CompassViewController.swift */,
 				2268081C2579F4160088768E /* ListViewController.swift */,
 				2268081A2579F4000088768E /* SettingsViewController.swift */,
-				2268081E2579F4270088768E /* InfoViewController.swift */,
 				722BCCBA257CCF9300DC479C /* Cells */,
 			);
 			name = Views;
@@ -125,6 +128,17 @@
 				722BCCC1257DF2E900DC479C /* RestaurantCell.xib */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		726BF5D3276867E900F0880A /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				722BCCAE257CB12500DC479C /* LocationManager.swift */,
+				726BF5D4276867FA00F0880A /* StringManager.swift */,
+				726BF5D627686AF200F0880A /* ImageManager.swift */,
+				726BF5DA27686E7B00F0880A /* SettingsManager.swift */,
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,7 +168,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1170;
-				LastUpgradeCheck = 1170;
+				LastUpgradeCheck = 1310;
 				ORGANIZATIONNAME = "Nicholas Pascucci";
 				TargetAttributes = {
 					226807FD2579D39E0088768E = {
@@ -202,18 +216,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				726BF5D5276867FA00F0880A /* StringManager.swift in Sources */,
+				726BF5D727686AF200F0880A /* ImageManager.swift in Sources */,
 				722BCCC6257DF8EE00DC479C /* FoodCompassStyler.swift in Sources */,
 				226808192579F3A30088768E /* CompassViewController.swift in Sources */,
-				226808062579D39E0088768E /* ViewController.swift in Sources */,
+				226808062579D39E0088768E /* FoodViewController.swift in Sources */,
 				226808022579D39E0088768E /* AppDelegate.swift in Sources */,
 				722BCCAF257CB12500DC479C /* LocationManager.swift in Sources */,
 				2268080C2579D39E0088768E /* FoodCompass.xcdatamodeld in Sources */,
+				726BF5DB27686E7B00F0880A /* SettingsManager.swift in Sources */,
 				226808042579D39E0088768E /* SceneDelegate.swift in Sources */,
 				722BCCC2257DF2E900DC479C /* RestaurantCell.swift in Sources */,
 				722BCCB8257CB43300DC479C /* Declarations.swift in Sources */,
 				722BCCBC257CCFAE00DC479C /* FoodItemCell.swift in Sources */,
 				2268081B2579F4000088768E /* SettingsViewController.swift in Sources */,
-				2268081F2579F4270088768E /* InfoViewController.swift in Sources */,
 				2268081D2579F4160088768E /* ListViewController.swift in Sources */,
 				722BCCB2257CB12C00DC479C /* API.swift in Sources */,
 				722BCCAC257CB11E00DC479C /* Models.swift in Sources */,
@@ -256,6 +272,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -278,6 +295,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -316,6 +334,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -338,6 +357,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -373,11 +393,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3TCCEYF5TG;
 				INFOPLIST_FILE = FoodCompass/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.npascuc2.FoodCompass;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mitchell.FoodCompass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -391,11 +412,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3TCCEYF5TG;
 				INFOPLIST_FILE = FoodCompass/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.npascuc2.FoodCompass;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mitchell.FoodCompass;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

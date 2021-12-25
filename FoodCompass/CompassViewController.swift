@@ -2,15 +2,15 @@
 //  CompassViewController.swift
 //  FoodCompass
 //
-//  Created by Nicholas Pascucci on 12/3/20.
-//  Copyright © 2020 Nicholas Pascucci. All rights reserved.
+//  Created by Mitchell Sweet on 12/3/20.
+//  Copyright © 2020 Mitchell Sweet. All rights reserved.
 //
 
 import UIKit
 import CoreLocation
 import MapKit
 
-class CompassViewController: UIViewController, ListControllerDelegate {
+class CompassViewController: UIViewController {
     
     // MARK: IBOutlets
     @IBOutlet weak var restaurantTitleLabel: UILabel!
@@ -25,11 +25,10 @@ class CompassViewController: UIViewController, ListControllerDelegate {
     
     // MARK: Constants
     public static let storyboardID = "compassVC"
-    let locationDelegate = LocationDelegate()
     
     // MARK: Variables
     var loadingSpinner: UIActivityIndicatorView?
-    var foodItem: FoodItem?
+    var foodItem: FoodItem!
     var restaurants = [Business]()
     var currentRestaurant = 0
     
@@ -37,12 +36,8 @@ class CompassViewController: UIViewController, ListControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard foodItem != nil else {
-            // TOOD: Handle empty category error
-            return
-        }
+        LocationManager.shared.setDelegate(delegate: self)
         
-        localization()
         viewSetup()
         getData()
     }
@@ -54,27 +49,25 @@ class CompassViewController: UIViewController, ListControllerDelegate {
     
     func viewSetup() {
         self.navigationController?.navigationBar.tintColor = .themeRed
-        self.title = "Food Compass"
-        restaurantTitleLabel.text = foodItem!.displayName
-        categoryImageView.image = foodItem!.image
-        ratingLabel.text = "Rating: --/--"
-        infoLabel.text = "----"
-        skipButton.layer.cornerRadius = 20
-        listButton.layer.cornerRadius = 20
+        self.title = StringManager.appTitle
+        restaurantTitleLabel.text = foodItem.displayName
+        categoryImageView.image = foodItem.image
+        ratingLabel.text = StringManager.Compass.ratingPlaceholder
+        infoLabel.text = StringManager.Compass.infoPlaceholder
         distanceLabel.isHidden = true
+        
+        skipButton.setTitle(StringManager.Buttons.skip, for: .normal)
+        listButton.setTitle(StringManager.Buttons.results, for: .normal)
+        FoodCompassStyler.stylePillButton(button: skipButton, buttonSize: .large)
+        FoodCompassStyler.stylePillButton(button: listButton, buttonSize: .large)
         
         loadingSpinner = UIActivityIndicatorView(style: .medium)
         loadingSpinner?.color = .themeRed
         loadingSpinner?.hidesWhenStopped = true
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: loadingSpinner!)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: openInMapsButton!)
+        
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: openInMapsButton!),
+                                                   UIBarButtonItem(customView: loadingSpinner!)]
     }
-    
-    func localization() {
-        skipButton.setTitle(localize(str: "Skip"), for: .normal)
-        listButton.setTitle(localize(str: "Results"), for: .normal)
-    }
-    
     
     func getData() {
         startLoading()
@@ -82,28 +75,28 @@ class CompassViewController: UIViewController, ListControllerDelegate {
             self.stopLoading()
             guard error == nil else {
                 // TODO: Implement better error handling
-                let errorAlert = UIAlertController(title: "Error", message: "An error has occured when searching for restaurants. Please try again.", preferredStyle: UIAlertController.Style.alert)
-                errorAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in }))
-
+                let errorAlert = UIAlertController(title: StringManager.Errors.error,
+                                                   message: StringManager.Errors.restaurantSearch,
+                                                   preferredStyle: UIAlertController.Style.alert)
+                errorAlert.addAction(UIAlertAction(title: StringManager.Buttons.cancel,
+                                                   style: .cancel,
+                                                   handler: { (action: UIAlertAction!) in }))
+                
                 self.present(errorAlert, animated: true, completion: nil)
                 return
             }
             
-            guard let res = results else {
-                // TODO: Handle error
-                return
-            }
+            guard let res = results else { return }
             self.restaurants = res.businesses
             self.loadRestaurant()
-            self.compassSetup()
         }
     }
     
     func loadRestaurant() {
         guard restaurants.count > 0 else {
             print("No restaurants found...")
-            restaurantTitleLabel.text = "No Restaurants Found"
-            ratingLabel.text = "Try another category"
+            restaurantTitleLabel.text = StringManager.Compass.noRestaurantsFound
+            ratingLabel.text = StringManager.Compass.tryAnotherCat
             infoLabel.isHidden = true
             arrowImage.isHidden = true
             skipButton.isHidden = true
@@ -112,17 +105,19 @@ class CompassViewController: UIViewController, ListControllerDelegate {
             openInMapsButton.isHidden = true
             return
         }
-        let current = restaurants[currentRestaurant]
-        restaurantTitleLabel.text = current.name
         
+        let current = restaurants[currentRestaurant]
+        
+        restaurantTitleLabel.text = current.name
         distanceLabel.isHidden = false
         distanceLabel.text = getReadableDistance(meters: current.distance)
-        ratingLabel.text = "Rating: \(Int(current.rating))/5, \(current.review_count) Reviews"
+        ratingLabel.text = StringManager.Compass.rating(rating: current.rating, reviews: current.review_count)
+        infoLabel.text = ""
         if let price = current.price {
             infoLabel.text = "\(price)"
-        } else {
-            infoLabel.text = ""
         }
+        
+        updateHeading(with: LocationManager.shared.heading ?? 0.0)
     }
     
     func nextRestaurant() {
@@ -131,11 +126,6 @@ class CompassViewController: UIViewController, ListControllerDelegate {
         } else {
             currentRestaurant += 1
         }
-        loadRestaurant()
-    }
-    
-    func restaurantSelected(index: Int) {
-        currentRestaurant = index
         loadRestaurant()
     }
     
@@ -160,76 +150,75 @@ class CompassViewController: UIViewController, ListControllerDelegate {
     @IBAction func skipTapped() { nextRestaurant() }
     
     @IBAction func showAllResultsTapped() {
-        let listVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: ListViewController.storyboardID) as! ListViewController
+        let listVC = UIStoryboard.init(name: Globals.StoryboardName, bundle: Bundle.main).instantiateViewController(withIdentifier: ListViewController.storyboardID) as! ListViewController
         listVC.restaurants = restaurants
-        listVC.title = "\(foodItem?.displayName ?? "Restaurants") Near You"
+        listVC.title = StringManager.Compass.nearYou(businessName: foodItem.displayName)
         listVC.delegate = self
         self.navigationController?.pushViewController(listVC, animated: true)
     }
     
     @IBAction func openInMapsTapped() { openCurrentInMaps() }
     
-    // MARK: Messy Compass Code
+    // MARK: - Compass
     // Compass was created using this tutorial: https://www.fivestars.blog/code/build-compass-app-swift.html
-    var latestLocation: CLLocation? = nil
-    var yourLocationBearing: CGFloat { return latestLocation?.bearingToLocationRadian(self.yourLocation) ?? 0 }
-    var yourLocation: CLLocation {
-        get { return CLLocation(latitude: restaurants[currentRestaurant].coordinates.latitude, longitude: restaurants[currentRestaurant].coordinates.longitude) }
+    
+    private var latestLocation: CLLocation? = nil
+    private var locationBearing: CGFloat { return latestLocation?.bearingToLocationRadian(self.targetLocation) ?? 0 }
+    private var targetLocation: CLLocation {
+        get {
+            return CLLocation(latitude: restaurants[currentRestaurant].coordinates.latitude,
+                              longitude: restaurants[currentRestaurant].coordinates.longitude)
+            
+        }
     }
     
-    let locationManager: CLLocationManager = {
-      $0.requestWhenInUseAuthorization()
-      $0.desiredAccuracy = kCLLocationAccuracyBest
-      $0.startUpdatingLocation()
-      $0.startUpdatingHeading()
-      return $0
-    }(CLLocationManager())
+    private func computeNewAngle(with newAngle: CGFloat) -> CGFloat {
+        var heading = locationBearing - newAngle.degreesToRadians
+        if UIDevice.current.orientation == .faceDown { heading *= -1 }
+        
+        return CGFloat(self.orientationAdjustment().degreesToRadians + heading)
+    }
     
     private func orientationAdjustment() -> CGFloat {
-      let isFaceDown: Bool = {
-        switch UIDevice.current.orientation {
-        case .faceDown: return true
-        default: return false
+        var angle = 0.0
+        
+        if statusBarOrientation == .portraitUpsideDown {
+            angle = UIDevice.current.orientation == .faceDown ? 180 : -180
         }
-      }()
-      
-      let adjAngle: CGFloat = {
-        switch UIApplication.shared.statusBarOrientation {
-        case .landscapeLeft:  return 90
-        case .landscapeRight: return -90
-        case .portrait, .unknown: return 0
-        case .portraitUpsideDown: return isFaceDown ? 180 : -180
-        }
-      }()
-      return adjAngle
+
+        return angle
     }
     
-    func compassSetup() {
-        guard restaurants.count > 0 else { return }
-        locationManager.delegate = locationDelegate
+    func updateHeading(with heading: CLLocationDirection) {
+        guard !restaurants.isEmpty else { return }
         
-        locationDelegate.locationCallback = { location in
-          self.latestLocation = location
-        }
-        
-        locationDelegate.headingCallback = { newHeading in
-          
-          func computeNewAngle(with newAngle: CGFloat) -> CGFloat {
-            let heading: CGFloat = {
-              let originalHeading = self.yourLocationBearing - newAngle.degreesToRadians
-              switch UIDevice.current.orientation {
-              case .faceDown: return -originalHeading
-              default: return originalHeading
-              }
-            }()
-            
-            return CGFloat(self.orientationAdjustment().degreesToRadians + heading)
-          }
-          
-          UIView.animate(withDuration: 0.5) {
-            let angle = computeNewAngle(with: CGFloat(newHeading))
+        let angle = self.computeNewAngle(with: heading)
+        UIView.animate(withDuration: 0.5) {
             self.arrowImage.transform = CGAffineTransform(rotationAngle: angle)
-          }
         }
+    }
+}
+
+extension CompassViewController: ListControllerDelegate {
+    
+    func restaurantSelected(index: Int) {
+        currentRestaurant = index
+        loadRestaurant()
+    }
+}
+
+extension CompassViewController: CLLocationManagerDelegate {
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let currentLocation = locations.last else { return }
+        self.latestLocation = currentLocation
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        updateHeading(with: newHeading.trueHeading)
+    }
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("ERROR: Updating location " + error.localizedDescription)
     }
 }

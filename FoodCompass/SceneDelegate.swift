@@ -2,8 +2,8 @@
 //  SceneDelegate.swift
 //  FoodCompass
 //
-//  Created by Nicholas Pascucci on 12/3/20.
-//  Copyright © 2020 Nicholas Pascucci. All rights reserved.
+//  Created by Mitchell Sweet on 12/3/20.
+//  Copyright © 2020 Mitchell Sweet. All rights reserved.
 //
 
 import UIKit

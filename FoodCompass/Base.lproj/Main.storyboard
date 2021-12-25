@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0A2-5Y-ZoI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0A2-5Y-ZoI">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Food View Controller-->
         <scene sceneID="pvW-pd-t3m">
             <objects>
-                <viewController id="TAM-Rt-KLE" customClass="ViewController" customModule="FoodCompass" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="TAM-Rt-KLE" customClass="FoodViewController" customModule="FoodCompass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rt6-28-WYU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -379,51 +379,6 @@
             </objects>
             <point key="canvasLocation" x="1773.5999999999999" y="-625.63718140929541"/>
         </scene>
-        <!--Info View Controller-->
-        <scene sceneID="jT1-XZ-2AS">
-            <objects>
-                <viewController storyboardIdentifier="InfoVC" id="1hb-uQ-R4g" customClass="InfoViewController" customModule="FoodCompass" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Iho-mY-qaL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8L-Ke-VtA">
-                                <rect key="frame" x="26" y="65" width="333" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.74901962280000001" green="0.15686275059999999" blue="0.15686275059999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Radius" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="mzm-gK-L9N">
-                                <rect key="frame" x="26" y="594" width="323" height="53"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="53" id="hds-8t-XHc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <color key="textColor" red="0.74901962280000001" green="0.15686275059999999" blue="0.15686275059999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="ucW-Ln-5oX"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="m8L-Ke-VtA" firstAttribute="leading" secondItem="ucW-Ln-5oX" secondAttribute="leading" constant="26" id="Oe9-FC-FoA"/>
-                            <constraint firstItem="ucW-Ln-5oX" firstAttribute="bottom" secondItem="mzm-gK-L9N" secondAttribute="bottom" constant="20" id="UCQ-TT-nBC"/>
-                            <constraint firstItem="m8L-Ke-VtA" firstAttribute="top" secondItem="ucW-Ln-5oX" secondAttribute="top" constant="21" id="egL-Be-7Ys"/>
-                            <constraint firstItem="ucW-Ln-5oX" firstAttribute="trailing" secondItem="m8L-Ke-VtA" secondAttribute="trailing" constant="16" id="hQk-xV-zjb"/>
-                            <constraint firstItem="mzm-gK-L9N" firstAttribute="leading" secondItem="ucW-Ln-5oX" secondAttribute="leading" constant="26" id="k8P-LH-1YX"/>
-                            <constraint firstItem="ucW-Ln-5oX" firstAttribute="trailing" secondItem="mzm-gK-L9N" secondAttribute="trailing" constant="26" id="xGV-kx-1kn"/>
-                        </constraints>
-                    </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <outlet property="appInfoLabel" destination="mzm-gK-L9N" id="EPh-UF-ZrG"/>
-                        <outlet property="descriptionLabel" destination="m8L-Ke-VtA" id="N7r-xq-Yak"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tFK-3I-GpP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1002.4" y="95.802098950524751"/>
-        </scene>
         <!--Settings View Controller-->
         <scene sceneID="xMJ-aG-K7B">
             <objects>
@@ -476,6 +431,15 @@
                                     <action selector="stepperChangedValueWithSender:" destination="bCW-ne-1am" eventType="valueChanged" id="UFv-Xe-knN"/>
                                 </connections>
                             </stepper>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000596046448" translatesAutoresizingMaskIntoConstraints="NO" id="vfd-RD-EYa">
+                                <rect key="frame" x="26" y="594" width="323" height="53"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="6yF-NX-huj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" red="0.74901962280000001" green="0.15686275059999999" blue="0.15686275059999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VxZ-DO-Qa1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -491,13 +455,17 @@
                             <constraint firstItem="jst-o7-xQY" firstAttribute="top" secondItem="Elq-R9-yxO" secondAttribute="bottom" constant="8" symbolic="YES" id="Pky-8x-EhA"/>
                             <constraint firstItem="jst-o7-xQY" firstAttribute="leading" secondItem="VxZ-DO-Qa1" secondAttribute="leading" id="VHt-If-3FJ"/>
                             <constraint firstItem="0jx-JA-srF" firstAttribute="top" secondItem="AqP-iL-9Tf" secondAttribute="bottom" constant="8" symbolic="YES" id="XbG-fZ-twU"/>
+                            <constraint firstItem="VxZ-DO-Qa1" firstAttribute="trailing" secondItem="vfd-RD-EYa" secondAttribute="trailing" constant="26" id="bKT-fp-eKW"/>
                             <constraint firstItem="jst-o7-xQY" firstAttribute="trailing" secondItem="VxZ-DO-Qa1" secondAttribute="trailing" id="nIC-Fn-Ddp"/>
                             <constraint firstItem="VxZ-DO-Qa1" firstAttribute="trailing" secondItem="Fj3-Cw-2af" secondAttribute="trailing" constant="16" id="p1N-oH-lYQ"/>
+                            <constraint firstItem="vfd-RD-EYa" firstAttribute="leading" secondItem="VxZ-DO-Qa1" secondAttribute="leading" constant="26" id="wm0-LL-1hL"/>
+                            <constraint firstItem="VxZ-DO-Qa1" firstAttribute="bottom" secondItem="vfd-RD-EYa" secondAttribute="bottom" constant="20" id="xuG-hh-1NM"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="distanceLabel" destination="AqP-iL-9Tf" id="oGS-hB-B0c"/>
+                        <outlet property="infoLabel" destination="vfd-RD-EYa" id="uCP-wd-4RU"/>
                         <outlet property="radiusLabel" destination="jst-o7-xQY" id="pCy-c4-X6K"/>
                         <outlet property="rangeStepper" destination="0jx-JA-srF" id="e3X-hs-E5o"/>
                         <outlet property="unitsLabel" destination="Fj3-Cw-2af" id="oil-IF-92K"/>
@@ -506,7 +474,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N0x-Ue-VOC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="250.40000000000001" y="95.802098950524751"/>
+            <point key="canvasLocation" x="2545" y="-626"/>
         </scene>
     </scenes>
     <resources>
