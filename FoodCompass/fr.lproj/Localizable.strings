@@ -5,25 +5,23 @@
   Created by Mitchell Sweet on 12/7/20.
   Copyright © 2020 Mitchell Sweet. All rights reserved.
 */
-"Food_Compass" = "Food Compass";
-"Hungry_Key" = "De quoi as-tu faim?";
-"Powered" = "Propulse par Yelp";
-"Restaurant" = "Nom du Restaurant";
-"Distance" = "Distance";
-"Rating" = "Evaluation";
-"Info" = "Info";
-"Skip" = "Sauter";
-"Results" = "Afficher tous les resultats";
-"Map" = "Carte";
-"List" = "Liste";
-"Units" = "Unites";
-"Imperial" = "Imperiale - Miles";
-"Metric" = "Metrique - Kilometres";
-"Radius" = "Rayon";
-"Mile" = "Mile";
-"Kilometer" = "Kilometre";
-"Miles" = "Miles";
-"Kilometers" = "Kilometres";
-"Information" = "Information";
-"Info_Paragraph_Key" = "Food Compass est une application pour ceux qui demandent comment nous obtenons de la nourriture plutôt que où. Utilisez-le en choisissant un type de nourriture et en suivant la boussole jusqu'à votre destination ou en utilisant la fonction de carte intégrée.";
-"Copyright_key" = "Food Compass, Version 1.0. Copyright 2020";
+
+"ERROR" = "Error";
+"ERROR_MESSAGE" = "An error has occured when searching for restaurants. Please try again.";
+"CANCEL" = "Cancel";
+"IMPERIAL" = "Imperiale - Miles";
+"METRIC" = "Metrique - Kilometres";
+"KILOMETERS" = "Kilometres";
+"LIST" = "Liste";
+"MAP" = "Carte";
+"MILES" = "Miles";
+"NOT_FOUND" = "No Restaurants Found";
+"POWERED_BY" = "Propulse par Yelp";
+"RADIUS" = "Rayon";
+"RATING_PLACEHOLDER" = "Evaluation --/--"; // The dashes represent no rating being available
+"RESULTS" = "Results";
+"SETTINGS" = "Settings";
+"SKIP" = "Sauter";
+"TRY_AGAIN" = "Try another category!";
+"UNITS" = "Unites";
+"HUNGRY" = "De quoi as-tu faim?";

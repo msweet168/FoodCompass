@@ -53,7 +53,6 @@
 		722BCCC1257DF2E900DC479C /* RestaurantCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantCell.xib; sourceTree = "<group>"; };
 		722BCCC5257DF8EE00DC479C /* FoodCompassStyler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCompassStyler.swift; sourceTree = "<group>"; };
 		724A4A3B257F2278002BB992 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		724A4A3E257F227B002BB992 /* pl-PL */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pl-PL"; path = "pl-PL.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		724A4A3F257F2288002BB992 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		726BF5D4276867FA00F0880A /* StringManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringManager.swift; sourceTree = "<group>"; };
 		726BF5D627686AF200F0880A /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
@@ -184,7 +183,6 @@
 				en,
 				Base,
 				fr,
-				"pl-PL",
 			);
 			mainGroup = 226807F52579D39E0088768E;
 			productRefGroup = 226807FF2579D39E0088768E /* Products */;
@@ -259,7 +257,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				724A4A3B257F2278002BB992 /* fr */,
-				724A4A3E257F227B002BB992 /* pl-PL */,
 				724A4A3F257F2288002BB992 /* en */,
 			);
 			name = Localizable.strings;

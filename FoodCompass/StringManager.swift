@@ -14,23 +14,23 @@ struct StringManager {
     
     // MARK: - Errors
     struct Errors {
-        static let error = "Error"
-        static let restaurantSearch = "An error has occured when searching for restaurants. Please try again."
+        static let error = "ERROR".localizedString
+        static let restaurantSearch = "ERROR_MESSAGE".localizedString
     }
     
     // MARK: - Buttons
     struct Buttons {
-        static let cancel = "Cancel"
-        static let skip = "Skip".localizedString
-        static let results = "Results".localizedString
+        static let cancel = "CANCEL".localizedString
+        static let skip = "SKIP".localizedString
+        static let results = "RESULTS".localizedString
     }
     
     // MARK: - CompassViewController
     struct Compass {
-        static let ratingPlaceholder = "Rating: --/--"
+        static let ratingPlaceholder = "RATING_PLACEHOLDER".localizedString
         static let infoPlaceholder = "----"
-        static let noRestaurantsFound = "No Restaurants Found"
-        static let tryAnotherCat = "Try another category!"
+        static let noRestaurantsFound = "NOT_FOUND".localizedString
+        static let tryAnotherCat = "TRY_AGAIN".localizedString
         
         static func nearYou(businessName: String) -> String {
             return "\(businessName) Near You"
@@ -43,14 +43,14 @@ struct StringManager {
     
     // MARK: - FoodViewController
     struct Food {
-        static let hungry = "What are you hungry for?"
-        static let poweredBy = "Powered by Yelp"
+        static let hungry = "HUNGRY".localizedString
+        static let poweredBy = "POWERED_BY".localizedString
     }
     
     // MARK: - ListViewController
     struct List {
-        static let map = "Map"
-        static let list = "List"
+        static let map = "MAP".localizedString
+        static let list = "LIST".localizedString
         
         static func rating(rating: Double) -> String {
             return "Rating: \(rating)/5"
@@ -63,13 +63,13 @@ struct StringManager {
     
     // MARK: - SettingsViewController
     struct Settings {
-        static let settings = "Settings"
-        static let units = "Units"
-        static let radius = "Radius"
+        static let settings = "SETTINGS".localizedString
+        static let units = "UNITS".localizedString
+        static let radius = "RADIUS".localizedString
         static let copyright = "Food Compass, Version 1.0. Copyright 2020"
-        static let miles = "Miles"
-        static let kilometers = "Kilometers"
-        static let imperial = "Imperial"
-        static let metric = "Metric"
+        static let miles = "MILES".localizedString
+        static let kilometers = "KILOMETERS".localizedString
+        static let imperial = "IMPERIAL".localizedString
+        static let metric = "METRIC".localizedString
     }
 }
