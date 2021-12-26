@@ -431,10 +431,10 @@
                                     <action selector="stepperChangedValueWithSender:" destination="bCW-ne-1am" eventType="valueChanged" id="UFv-Xe-knN"/>
                                 </connections>
                             </stepper>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000596046448" translatesAutoresizingMaskIntoConstraints="NO" id="vfd-RD-EYa">
-                                <rect key="frame" x="26" y="594" width="323" height="53"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000596046448" translatesAutoresizingMaskIntoConstraints="NO" id="vfd-RD-EYa">
+                                <rect key="frame" x="25" y="577" width="325" height="70"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="53" id="6yF-NX-huj"/>
+                                    <constraint firstAttribute="height" constant="70" id="6yF-NX-huj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" red="0.74901962280000001" green="0.15686275059999999" blue="0.15686275059999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -455,10 +455,10 @@
                             <constraint firstItem="jst-o7-xQY" firstAttribute="top" secondItem="Elq-R9-yxO" secondAttribute="bottom" constant="8" symbolic="YES" id="Pky-8x-EhA"/>
                             <constraint firstItem="jst-o7-xQY" firstAttribute="leading" secondItem="VxZ-DO-Qa1" secondAttribute="leading" id="VHt-If-3FJ"/>
                             <constraint firstItem="0jx-JA-srF" firstAttribute="top" secondItem="AqP-iL-9Tf" secondAttribute="bottom" constant="8" symbolic="YES" id="XbG-fZ-twU"/>
-                            <constraint firstItem="VxZ-DO-Qa1" firstAttribute="trailing" secondItem="vfd-RD-EYa" secondAttribute="trailing" constant="26" id="bKT-fp-eKW"/>
+                            <constraint firstItem="VxZ-DO-Qa1" firstAttribute="trailing" secondItem="vfd-RD-EYa" secondAttribute="trailing" constant="25" id="bKT-fp-eKW"/>
                             <constraint firstItem="jst-o7-xQY" firstAttribute="trailing" secondItem="VxZ-DO-Qa1" secondAttribute="trailing" id="nIC-Fn-Ddp"/>
                             <constraint firstItem="VxZ-DO-Qa1" firstAttribute="trailing" secondItem="Fj3-Cw-2af" secondAttribute="trailing" constant="16" id="p1N-oH-lYQ"/>
-                            <constraint firstItem="vfd-RD-EYa" firstAttribute="leading" secondItem="VxZ-DO-Qa1" secondAttribute="leading" constant="26" id="wm0-LL-1hL"/>
+                            <constraint firstItem="vfd-RD-EYa" firstAttribute="leading" secondItem="VxZ-DO-Qa1" secondAttribute="leading" constant="25" id="wm0-LL-1hL"/>
                             <constraint firstItem="VxZ-DO-Qa1" firstAttribute="bottom" secondItem="vfd-RD-EYa" secondAttribute="bottom" constant="20" id="xuG-hh-1NM"/>
                         </constraints>
                     </view>

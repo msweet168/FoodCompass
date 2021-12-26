@@ -32,6 +32,8 @@ class CompassViewController: UIViewController {
     var restaurants = [Business]()
     var currentRestaurant = 0
     
+    private var latestLocation: CLLocation? = nil
+    
     // MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,6 +122,17 @@ class CompassViewController: UIViewController {
         updateHeading(with: LocationManager.shared.heading ?? 0.0)
     }
     
+    func refreshDistance() {
+        guard restaurants.count > 0,
+              restaurants.count >= currentRestaurant else { return }
+        let current = restaurants[currentRestaurant]
+        let restaurantLocation = CLLocation(latitude: current.coordinates.latitude, longitude: current.coordinates.longitude)
+        let distance = latestLocation?.distance(from: restaurantLocation)
+        if let distance = distance {
+            distanceLabel.text = getReadableDistance(meters: distance)
+        }
+    }
+    
     func nextRestaurant() {
         if currentRestaurant == restaurants.count-1 {
             currentRestaurant = 0
@@ -162,7 +175,6 @@ class CompassViewController: UIViewController {
     // MARK: - Compass
     // Compass was created using this tutorial: https://www.fivestars.blog/code/build-compass-app-swift.html
     
-    private var latestLocation: CLLocation? = nil
     private var locationBearing: CGFloat { return latestLocation?.bearingToLocationRadian(self.targetLocation) ?? 0 }
     private var targetLocation: CLLocation {
         get {
@@ -212,6 +224,7 @@ extension CompassViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = locations.last else { return }
         self.latestLocation = currentLocation
+        refreshDistance()
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
