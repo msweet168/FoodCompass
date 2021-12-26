@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class FoodViewController: UIViewController {
     
@@ -21,6 +22,7 @@ class FoodViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         LocationManager.shared.requestAuthorization()
+        LocationManager.shared.setDelegate(delegate: self)
         viewSetup()
         collectionViewSetup()
     }
@@ -89,5 +91,11 @@ extension FoodViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         showCompassWith(foodItem: foodItems[indexPath.row])
+    }
+}
+
+extension FoodViewController: CLLocationManagerDelegate {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        LocationManager.shared.setupLocationManager()
     }
 }

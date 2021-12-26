@@ -38,6 +38,10 @@ class LocationManager {
     
     // MARK: Functions
     init() {
+        setupLocationManager()
+    }
+    
+    func setupLocationManager() {
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.startUpdatingLocation()
         manager.startUpdatingHeading()
