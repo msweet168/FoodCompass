@@ -63,7 +63,7 @@ struct StringManager {
     
     // MARK: - SettingsViewController
     struct Settings {
-        static let copyright = "Food Compass, Version 1.0. Copyright 2021\n Created by Mitchell Sweet"
+        static let copyright = "Food Compass, Version 1.0. Copyright 2021\nCreated by Mitchell Sweet\nLocalization by Nicholas Pascucci"
         static let settings = "SETTINGS".localizedString
         static let units = "UNITS".localizedString
         static let radius = "RADIUS".localizedString

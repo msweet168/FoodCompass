@@ -431,7 +431,7 @@
                                     <action selector="stepperChangedValueWithSender:" destination="bCW-ne-1am" eventType="valueChanged" id="UFv-Xe-knN"/>
                                 </connections>
                             </stepper>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000596046448" translatesAutoresizingMaskIntoConstraints="NO" id="vfd-RD-EYa">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000596046448" translatesAutoresizingMaskIntoConstraints="NO" id="vfd-RD-EYa">
                                 <rect key="frame" x="25" y="577" width="325" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="6yF-NX-huj"/>
