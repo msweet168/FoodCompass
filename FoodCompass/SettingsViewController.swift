@@ -17,6 +17,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var unitsLabel: UILabel!
     @IBOutlet weak var radiusLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var showClosedToggle: UISwitch!
     
     // MARK: Constants
     public static let storyboardID = "settingVC"
@@ -49,11 +50,16 @@ class SettingsViewController: UIViewController {
         rangeStepper.value = Double(SettingsManager.radius)
         unitsPickerView.selectRow(SettingsManager.units == .imperial ? 0 : 1, inComponent: 0, animated: false)
         distanceLabel.text = "\(radius) \(SettingsManager.units == .imperial ? StringManager.Settings.miles : StringManager.Settings.kilometers)"
+        showClosedToggle.setOn(SettingsManager.showClosed, animated: false)
     }
 
     @IBAction func stepperChangedValue(sender: UIStepper) {
         SettingsManager.radius = Int(sender.value)
         updateSettingsPage()
+    }
+
+    @IBAction func showClosedSwitchToggled(sender: UISwitch) {
+        SettingsManager.showClosed = sender.isOn
     }
 }
 

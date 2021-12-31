@@ -14,6 +14,7 @@ class SettingsManager {
     
     private struct UserDefaultsKeys {
         static let UNITS = "units"
+        static let CLOSED = "closed"
         static let RADIUS = "radius"
     }
     
@@ -22,6 +23,11 @@ class SettingsManager {
         set { UserDefaults.standard.setValue(newValue.rawValue, forKey: UserDefaultsKeys.UNITS) }
     }
     
+    public static var showClosed: Bool {
+        get { return UserDefaults.standard.bool(forKey: UserDefaultsKeys.CLOSED) }
+        set { UserDefaults.standard.setValue(newValue, forKey: UserDefaultsKeys.CLOSED)}
+    }
+
     /// Returns saved radius in miles
     public static var radius: Int {
         get { return UserDefaults.standard.integer(forKey: UserDefaultsKeys.RADIUS) }
@@ -45,6 +51,7 @@ class SettingsManager {
         // Register User Defaults on first launch
         UserDefaults.standard.register(defaults: [
             UserDefaultsKeys.UNITS: UnitType.imperial.rawValue,
+            UserDefaultsKeys.CLOSED: false,
             UserDefaultsKeys.RADIUS: defaultRadius,
         ])
     }

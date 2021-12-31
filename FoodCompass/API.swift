@@ -51,15 +51,21 @@ class API {
     
     // MARK: Functions    
     public func searchYelpFor(category: RestaurantCategory, completion: @escaping (SearchResults?, APIError?) -> Void) {
-        
+
+        LocationManager.shared.refreshLocation()
+
         guard let lat = LocationManager.shared.latitude,
               let long = LocationManager.shared.longitude else {
-            print("Location is not available for API call...")
-            completion(nil, .locationError)
-            return
-        }
+                  print("Location is not available for API call...")
+                  completion(nil, .locationError)
+                  return
+              }
+
+        var urlString = "\(address)?latitude=\(lat)&longitude=\(long)&categories=\(category.rawValue)&sort_by=distance"
+        if !SettingsManager.showClosed { urlString += "&open_now=true"}
+        urlString += "&radius=\(Int(SettingsManager.radiusInMeters))"
         
-        let url = URL(string: "\(address)?latitude=\(lat)&longitude=\(long)&categories=\(category.rawValue)&sort_by=distance&open_now=true&radius=\(Int(SettingsManager.radiusInMeters))")!
+        let url = URL(string: urlString)!
         
         let sessionConfig = URLSessionConfiguration.default
         sessionConfig.httpAdditionalHeaders = ["Authorization": "Bearer \(Keys.API_KEY)"]

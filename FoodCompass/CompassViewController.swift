@@ -73,8 +73,8 @@ class CompassViewController: UIViewController {
     
     func getData() {
         startLoading()
-        API.shared.searchYelpFor(category: foodItem!.category) { (results, error) in
-            self.stopLoading()
+        API.shared.searchYelpFor(category: foodItem!.category) { [weak self] (results, error) in
+            self?.stopLoading()
             guard error == nil else {
                 // TODO: Implement better error handling
                 let errorAlert = UIAlertController(title: StringManager.Errors.error,
@@ -84,13 +84,18 @@ class CompassViewController: UIViewController {
                                                    style: .cancel,
                                                    handler: { (action: UIAlertAction!) in }))
                 
-                self.present(errorAlert, animated: true, completion: nil)
+                self?.present(errorAlert, animated: true, completion: nil)
+
+                self?.listButton.isEnabled = false
+                self?.skipButton.isEnabled = false
+                self?.openInMapsButton.isEnabled = false
+
                 return
             }
             
             guard let res = results else { return }
-            self.restaurants = res.businesses
-            self.loadRestaurant()
+            self?.restaurants = res.businesses
+            self?.loadRestaurant()
         }
     }
     
@@ -143,6 +148,8 @@ class CompassViewController: UIViewController {
     }
     
     func openCurrentInMaps() {
+        guard restaurants.count > 0 else { return }
+
         let regionDistance:CLLocationDistance = 10000
         let coordinates = CLLocationCoordinate2DMake(restaurants[currentRestaurant].coordinates.latitude, restaurants[currentRestaurant].coordinates.longitude)
         let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
@@ -163,6 +170,8 @@ class CompassViewController: UIViewController {
     @IBAction func skipTapped() { nextRestaurant() }
     
     @IBAction func showAllResultsTapped() {
+        guard restaurants.count > 0 else { return }
+
         let listVC = UIStoryboard.init(name: Globals.StoryboardName, bundle: Bundle.main).instantiateViewController(withIdentifier: ListViewController.storyboardID) as! ListViewController
         listVC.restaurants = restaurants
         listVC.title = StringManager.Compass.nearYou(businessName: foodItem.displayName)

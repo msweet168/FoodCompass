@@ -105,6 +105,8 @@ extension ListViewController: MKMapViewDelegate {
         mapView.delegate = self
         mapView.showsUserLocation = true
         
+        guard restaurants.count > 0 else { return }
+
         let defaultLocation = CLLocationCoordinate2D(latitude: restaurants[0].coordinates.latitude,
                                                      longitude: restaurants[0].coordinates.longitude)
         mapView.setCenter(CLLocationCoordinate2D(latitude: LocationManager.shared.latitude ?? defaultLocation.latitude,

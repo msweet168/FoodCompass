@@ -71,5 +71,6 @@ struct StringManager {
         static let kilometers = "KILOMETERS".localizedString
         static let imperial = "IMPERIAL".localizedString
         static let metric = "METRIC".localizedString
+        static let closed = "CLOSED".localizedString
     }
 }
